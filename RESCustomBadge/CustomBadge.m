@@ -201,14 +201,21 @@
         lineSize += scale * 0.25;
     }
 
+    CGContextSaveGState(context);
+
+    CGContextTranslateCTM(context, 0.0, CGRectGetHeight(rect));
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetStrokeColorWithColor(context, strokeColor);
+
     // top-left to top-right
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, lineSize);
-    CGContextSetStrokeColorWithColor(context, strokeColor);
+
     // top-left
-    CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, -M_PI / 2, 0);
+    CGContextAddArc(context, maxX - radius, maxY - radius, radius, 0, M_PI / 2, 0);
     // top-right
-    CGContextAddArc(context, maxX-radius, maxY-radius, radius, -M_PI / 2, 0, 0);
+    CGContextAddArc(context, minX + radius, minY + radius, radius, M_PI / 2, M_PI, 0);
+
     CGContextSetStrokeColorWithColor(context, UIColor.orangeColor.CGColor);
     CGContextStrokePath(context);
 
@@ -216,13 +223,15 @@
 
     // bottom-left to bottom-right
     CGContextBeginPath(context);
-    CGContextSetLineWidth(context, lineSize);
     // bottom-left
-    CGContextAddArc(context, minX + radius, maxY - radius, radius, M_PI, M_PI / 2, 1);
+    CGContextAddArc(context, minX + radius, maxY - radius, radius, M_PI, -M_PI / 2, 0);
     // bottom-right
-    CGContextAddArc(context, maxX - radius, minY + radius, radius, M_PI / 2, 0, 1);
+    CGContextAddArc(context, maxX - radius, minY + radius, radius, -M_PI / 2, 0, 0);
+
     CGContextSetStrokeColorWithColor(context, UIColor.grayColor.CGColor);
     CGContextStrokePath(context);
+
+    CGContextRestoreGState(context);
 }
 
 
