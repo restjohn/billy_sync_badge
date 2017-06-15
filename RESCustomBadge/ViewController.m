@@ -42,6 +42,8 @@
 
     [super viewDidLoad];
 
+    self.view.backgroundColor = UIColor.lightGrayColor;
+
     // An array to hold the badges
     NSMutableArray *badges = [NSMutableArray array];
 

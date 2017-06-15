@@ -200,12 +200,15 @@
     if (scale > 1) {
         lineSize += scale * 0.25;
     }
+    CGFloat arrowWidth = 1.5 * lineSize;
+    CGFloat arrowHeight = 2 * arrowWidth;
 
     CGContextSaveGState(context);
 
     CGContextTranslateCTM(context, 0.0, CGRectGetHeight(rect));
     CGContextScaleCTM(context, 1.0, -1.0);
     CGContextSetStrokeColorWithColor(context, strokeColor);
+    CGContextSetFillColorWithColor(context, strokeColor);
 
     // top-left to top-right
     CGContextBeginPath(context);
@@ -215,8 +218,14 @@
     CGContextAddArc(context, maxX - radius, maxY - radius, radius, M_PI / 3, M_PI / 2, 0);
     // top-right
     CGContextAddArc(context, minX + radius, minY + radius, radius, M_PI / 2, M_PI, 0);
-
+    CGPoint endPoint = CGContextGetPathCurrentPoint(context);
     CGContextStrokePath(context);
+    // arrow
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, endPoint.x - arrowWidth, endPoint.y);
+    CGContextAddLineToPoint(context, endPoint.x, endPoint.y - arrowHeight);
+    CGContextAddLineToPoint(context, endPoint.x + arrowWidth, endPoint.y);
+    CGContextFillPath(context);
 
     CGContextMoveToPoint(context, minX, midY);
 
@@ -226,8 +235,14 @@
     CGContextAddArc(context, minX + radius, maxY - radius, radius, M_PI + M_PI / 3, -M_PI / 2, 0);
     // bottom-right
     CGContextAddArc(context, maxX - radius, minY + radius, radius, -M_PI / 2, 0, 0);
-
+    endPoint = CGContextGetPathCurrentPoint(context);
     CGContextStrokePath(context);
+    // arrow
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, endPoint.x - arrowWidth, endPoint.y);
+    CGContextAddLineToPoint(context, endPoint.x, endPoint.y + arrowHeight);
+    CGContextAddLineToPoint(context, endPoint.x + arrowWidth, endPoint.y);
+    CGContextFillPath(context);
 
     CGContextRestoreGState(context);
 }
