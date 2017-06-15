@@ -160,27 +160,68 @@
 // Draws the Badge Frame with Quartz
 -(void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect
 {
-    CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
-    CGFloat puffer = CGRectGetMaxY(rect)*0.10;
+//    CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
+//    CGFloat puffer = CGRectGetMaxY(rect)*0.10;
+//
+//    CGFloat maxX = CGRectGetMaxX(rect) - puffer;
+//    CGFloat maxY = CGRectGetMaxY(rect) - puffer;
+//    CGFloat minX = CGRectGetMinX(rect) + puffer;
+//    CGFloat minY = CGRectGetMinY(rect) + puffer;
+//
+//
+//    CGContextBeginPath(context);
+//    CGFloat lineSize = 2;
+//    if(self.badgeScaleFactor>1) {
+//        lineSize += self.badgeScaleFactor*0.25;
+//    }
+//    CGContextSetLineWidth(context, lineSize);
+//    CGContextSetStrokeColorWithColor(context, [self.badgeStyle.badgeFrameColor CGColor]);
+//    CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
+//    CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
+//    CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
+//    CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
+//    CGContextClosePath(context);
+//    CGContextStrokePath(context);
+
+
+    CGFloat radius = CGRectGetMaxY(rect) * self.badgeCornerRoundness;
+    CGFloat puffer = CGRectGetMaxY(rect) * 0.10;
 
     CGFloat maxX = CGRectGetMaxX(rect) - puffer;
     CGFloat maxY = CGRectGetMaxY(rect) - puffer;
     CGFloat minX = CGRectGetMinX(rect) + puffer;
     CGFloat minY = CGRectGetMinY(rect) + puffer;
+    CGFloat midY = CGRectGetMidY(rect);
 
+    CGFloat scale = self.badgeScaleFactor;
+    CGColorRef strokeColor = self.badgeStyle.badgeFrameColor.CGColor;
 
-    CGContextBeginPath(context);
     CGFloat lineSize = 2;
-    if(self.badgeScaleFactor>1) {
-        lineSize += self.badgeScaleFactor*0.25;
+    if (scale > 1) {
+        lineSize += scale * 0.25;
     }
+
+    // top-left to top-right
+    CGContextBeginPath(context);
     CGContextSetLineWidth(context, lineSize);
-    CGContextSetStrokeColorWithColor(context, [self.badgeStyle.badgeFrameColor CGColor]);
-    CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
-    CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
-    CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
-    CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
-    CGContextClosePath(context);
+    CGContextSetStrokeColorWithColor(context, strokeColor);
+    // top-left
+    CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, -M_PI / 2, 0);
+    // top-right
+    CGContextAddArc(context, maxX-radius, maxY-radius, radius, -M_PI / 2, 0, 0);
+    CGContextSetStrokeColorWithColor(context, UIColor.orangeColor.CGColor);
+    CGContextStrokePath(context);
+
+    CGContextMoveToPoint(context, minX, midY);
+
+    // bottom-left to bottom-right
+    CGContextBeginPath(context);
+    CGContextSetLineWidth(context, lineSize);
+    // bottom-left
+    CGContextAddArc(context, minX + radius, maxY - radius, radius, M_PI, M_PI / 2, 1);
+    // bottom-right
+    CGContextAddArc(context, maxX - radius, minY + radius, radius, M_PI / 2, 0, 1);
+    CGContextSetStrokeColorWithColor(context, UIColor.grayColor.CGColor);
     CGContextStrokePath(context);
 }
 
