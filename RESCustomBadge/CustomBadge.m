@@ -160,30 +160,6 @@
 // Draws the Badge Frame with Quartz
 -(void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect
 {
-//    CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
-//    CGFloat puffer = CGRectGetMaxY(rect)*0.10;
-//
-//    CGFloat maxX = CGRectGetMaxX(rect) - puffer;
-//    CGFloat maxY = CGRectGetMaxY(rect) - puffer;
-//    CGFloat minX = CGRectGetMinX(rect) + puffer;
-//    CGFloat minY = CGRectGetMinY(rect) + puffer;
-//
-//
-//    CGContextBeginPath(context);
-//    CGFloat lineSize = 2;
-//    if(self.badgeScaleFactor>1) {
-//        lineSize += self.badgeScaleFactor*0.25;
-//    }
-//    CGContextSetLineWidth(context, lineSize);
-//    CGContextSetStrokeColorWithColor(context, [self.badgeStyle.badgeFrameColor CGColor]);
-//    CGContextAddArc(context, maxX-radius, minY+radius, radius, M_PI+(M_PI/2), 0, 0);
-//    CGContextAddArc(context, maxX-radius, maxY-radius, radius, 0, M_PI/2, 0);
-//    CGContextAddArc(context, minX+radius, maxY-radius, radius, M_PI/2, M_PI, 0);
-//    CGContextAddArc(context, minX+radius, minY+radius, radius, M_PI, M_PI+M_PI/2, 0);
-//    CGContextClosePath(context);
-//    CGContextStrokePath(context);
-
-
     CGFloat radius = CGRectGetMaxY(rect) * self.badgeCornerRoundness;
     CGFloat puffer = CGRectGetMaxY(rect) * 0.10;
 
@@ -246,7 +222,6 @@
 
     CGContextRestoreGState(context);
 }
-
 
 - (UIFont*) fontForBadgeWithSize:(CGFloat)size {
     switch (self.badgeStyle.badgeFontType) {
