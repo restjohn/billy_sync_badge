@@ -200,7 +200,7 @@
     if (scale > 1) {
         lineSize += scale * 0.25;
     }
-    CGFloat arrowWidth = 1.5 * lineSize;
+    CGFloat arrowWidth = 1.75 * lineSize;
     CGFloat arrowHeight = 2 * arrowWidth;
 
     CGContextSaveGState(context);
