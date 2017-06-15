@@ -57,8 +57,8 @@
     // Creates a badge with free customer definitions
     BadgeStyle *badge3Style = [BadgeStyle freeStyleWithTextColor:[UIColor whiteColor]
                                                   withInsetColor:[UIColor blueColor]
-                                                  withFrameColor:nil
-                                                       withFrame:NO
+                                                  withFrameColor:UIColor.orangeColor
+                                                       withFrame:YES
                                                       withShadow:NO
                                                      withShining:NO
                                                     withFontType:BadgeStyleFontTypeHelveticaNeueLight];
