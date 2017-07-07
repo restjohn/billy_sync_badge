@@ -12,6 +12,8 @@
 @interface CustomBadge ()
 
 @property(nonatomic) UIFont *badgeFont;
+@property (nonatomic) CGFloat lineSize;
+@property (nonatomic) CGFloat arrowWidth;
 
 - (void) drawRoundedRectWithContext:(CGContextRef)context withRect:(CGRect)rect;
 - (void) drawFrameWithContext:(CGContextRef)context withRect:(CGRect)rect;
