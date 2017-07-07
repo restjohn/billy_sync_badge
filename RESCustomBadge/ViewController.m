@@ -42,7 +42,7 @@
 
     [super viewDidLoad];
 
-    self.view.backgroundColor = UIColor.lightGrayColor;
+//    self.view.backgroundColor = UIColor.lightGrayColor;
 
     // An array to hold the badges
     NSMutableArray *badges = [NSMutableArray array];
@@ -57,8 +57,8 @@
     [badges addObject:badge2];
 
     // Creates a badge with free customer definitions
-    BadgeStyle *badge3Style = [BadgeStyle freeStyleWithTextColor:[UIColor whiteColor]
-                                                  withInsetColor:[UIColor blueColor]
+    BadgeStyle *badge3Style = [BadgeStyle freeStyleWithTextColor:[UIColor orangeColor]
+                                                  withInsetColor:[UIColor clearColor]
                                                   withFrameColor:UIColor.orangeColor
                                                        withFrame:YES
                                                       withShadow:NO
@@ -68,21 +68,21 @@
     CustomBadge *badge3 = [CustomBadge customBadgeWithString:@"Retina ready!" withScale:1.5 withStyle:badge3Style];
     [badges addObject:badge3];
 
-    BadgeStyle *badge4Style = [BadgeStyle freeStyleWithTextColor:[UIColor whiteColor]
-                                                  withInsetColor:[UIColor purpleColor]
-                                                  withFrameColor:[UIColor blackColor]
+    BadgeStyle *badge4Style = [BadgeStyle freeStyleWithTextColor:[UIColor orangeColor]
+                                                  withInsetColor:[UIColor clearColor]
+                                                  withFrameColor:[UIColor orangeColor]
                                                        withFrame:YES
-                                                      withShadow:YES
-                                                     withShining:YES
+                                                      withShadow:NO
+                                                     withShining:NO
                                                     withFontType:BadgeStyleFontTypeHelveticaNeueLight];
 
     CustomBadge *badge4 = [CustomBadge customBadgeWithString:@"Highly customizable" withScale:2.0 withStyle:badge4Style];
     [badges addObject:badge4];
 
-    CustomBadge *badge5 = [CustomBadge customBadgeWithString:@"1"];
+    CustomBadge *badge5 = [CustomBadge customBadgeWithString:@"1" withStyle:badge4Style];
     [badges addObject:badge5];
 
-    CustomBadge *badge6 = [CustomBadge customBadgeWithString:@"2" withStyle:[BadgeStyle oldStyle]];
+    CustomBadge *badge6 = [CustomBadge customBadgeWithString:@"2" withStyle:badge4Style];
     [badges addObject:badge6];
 
 
